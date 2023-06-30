@@ -1,9 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Pathway+Extreme&family=Rubik&display=swap');
 
-html, body {
-    overflow-x: hidden;
-  }
-  body {
+body {
     position: relative
 }
 
@@ -11,12 +8,13 @@ html, body {
     font-family: 'Pathway Extreme', sans-serif;
     font-family: 'Rubik', sans-serif;
     margin: 0;
+    box-sizing: border-box;
 }
 
 #main-header {
     display: flex;
-    /* position: fixed; */
-    background: #F2CA2F;;
+    position: absolute;
+    /* background: linear-gradient(rgba(255,255,255,0.5), rgba(255,255,255,0.2) 50%, rgba(255,255,255, 0)); */
     width: 100vw;
     margin: 0;
     align-items: center;
@@ -24,9 +22,16 @@ html, body {
 
 .header-content {
     display: flex;
-    /* margin: 1.5rem; */
     padding: 1rem;
-    width: 30vw;
+    width: 100vw;
+}
+
+.header-content div {
+    width:60%;
+}
+
+.profile-options-section {
+    display: none;
 }
 
 .toggle-button {
@@ -58,7 +63,8 @@ html, body {
     z-index: 2;
 }
 
-#sidebar a{
+#sidebar a,
+.profile-options-section a{
     text-decoration: none;
     color: black;
     font-size: 0.7rem;
@@ -66,7 +72,7 @@ html, body {
     padding-top: 1rem;
 }
 
-.profile-option {
+#sidebar .profile-option {
     width: 70%;
     padding: 1rem;
     border-radius: 0.5rem;
@@ -96,30 +102,34 @@ main {
 }
 
 #product-overview {
+    background: linear-gradient(rgba(255,255,255,0.2) 10%,  rgba(255,255,255,0.5) 70%, rgba(255,255,255,1)), url(images/ShowcaseImage.png);
+    background-position: center;
+    background-size: cover;
     display: flex;
     flex-wrap: wrap;
     align-content: start;
     justify-content: start;
     padding: 1rem;
-    height: 65vh;
-    width: 100vh;
-    overflow: hidden;
+    padding-top: 92px;
+    height: 100vh;
+    width: 100vw;
 }
 
-.image-bg {
+/* .image-bg {
     position: absolute;
     background: url(images/ShowcaseImage.png) right top/cover;
     opacity: 0.2;
     top: 0;
     left: 0;
     width: 100vw;
-    height: 80vh;
+    height: 70vh;
     z-index: -1;
-    overflow: hidden;
-}
+    margin-top: 5.75rem;
+    box-shadow: 3px 3px 3px 3px rgba(0,0,0,0.3);
+} */
 
 #product-overview h1 {
-    width: 100vw;
+    width: 100%;
     margin-top: 2rem;
     font-size: 2rem;
     align-content: start;
@@ -130,6 +140,7 @@ main {
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
+    margin: 2rem 0;
 }
 
 .delivery-address{
@@ -138,11 +149,12 @@ main {
     background: #fff;
     width: 90vw;
     font-size: 1rem;
-    border: 0.2rem solid #F2CA2F;
+    /* border: 0.2rem solid #F2CA2F; */
+    box-shadow: 1px 1px 4px 1px rgba(0,0,0,0.3);
 }
 
 .delivery-address svg{
-    width: 10%;
+    width: 20%;
     padding: 1rem;
 }
 
@@ -158,7 +170,8 @@ main {
     background: #fff;
     width: 90vw;
     margin: 1rem 0;
-    border: 0.2rem solid #F2CA2F;
+    /* border: 0.2rem solid #F2CA2F; */
+    box-shadow: 1px 1px 4px 1px rgba(0,0,0,0.3);
 }
 
 .delivery-time select{
@@ -168,7 +181,7 @@ main {
 }
 
 .delivery-time svg {
-    width: auto;
+    width: 20%;
     padding: 1rem;
     align-self: center;
 }
@@ -180,8 +193,8 @@ main {
     color: white;
     text-decoration: none;
     border-radius: 0.5rem;
-    width: 30vw;
     text-align: center;
+    font-size: 1.3rem;
 }
 
 .deliver-set p {
@@ -227,6 +240,8 @@ main {
 
 #service-overview div > img{
     width: 100%;
+    box-shadow: 3px 3px 5px 1px rgba(0,0,0,0.3);;
+    margin-bottom: 1rem;
 }
 
 #near-me h1{
@@ -323,11 +338,13 @@ main {
 }
 
 .second-footer-section a{
+    text-align: center;
     text-decoration: none;
     margin: 1rem auto;
 }
 
 .second-footer-section p {
+    text-align: center;
     margin: 1rem auto;
 }
 
@@ -364,4 +381,67 @@ main {
 
 .current {
     color: green;
+}
+
+@media (min-width: 25rem) {
+
+    #main-header {
+        background: transparent;
+        position: fixed;
+    }
+
+    .image-bg {
+        opacity: 1;
+        margin: 0;
+        height: 100vh;
+    }
+
+    .header-content {
+        width: 100vw;
+        align-items: center;
+    }
+
+    .profile-options-section {
+        display: flex;
+        margin-right: 1.5rem;
+        margin-left: auto;
+        text-align: right;
+        gap: 2rem;
+    }
+
+    .header-scroll {
+        background-color: #fff;
+        box-shadow: 0px -2px 0px inset rgb(226, 226, 226);
+    }
+
+    #main-header .profile-option {
+        display: inline-block;
+        border-radius: 9999px;
+        padding: 0.7rem 1rem;
+        margin: 0;
+        white-space: nowrap;
+        font-size: 1rem;
+        box-shadow: 0px 2px 5px rgba(0,0,0,0.3);
+    }
+
+    #main-header .profile-option.sign-up {
+        order: +2;
+        text-align: center;
+    }
+
+    #main-header .profile-option.log-in{
+        display: flex;
+        align-items: center;
+        background: #fff;
+    }
+
+    #main-header .profile-option.log-in svg{
+        width: 1rem;
+        margin-right: 0.5rem;
+
+    }
+
+    #service-overview {
+        margin-top: 10rem;
+    }
 }
