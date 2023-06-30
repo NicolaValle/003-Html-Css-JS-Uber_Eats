@@ -26,8 +26,12 @@ body {
     width: 100vw;
 }
 
-.header-content div {
-    width:60%;
+.uber-logo > svg {
+    width: 55%;
+}
+
+.hamburger-menu {
+    width: 2rem;
 }
 
 .profile-options-section {
@@ -388,12 +392,16 @@ main {
     #main-header {
         background: transparent;
         position: fixed;
+        margin: 0 auto;
+        padding: 0 2.4rem;
     }
 
-    .image-bg {
-        opacity: 1;
-        margin: 0;
-        height: 100vh;
+    #main-header.scroll{
+        background: white;
+    }
+    
+    .uber-logo svg {
+        width: 10rem;
     }
 
     .header-content {
@@ -403,10 +411,8 @@ main {
 
     .profile-options-section {
         display: flex;
-        margin-right: 1.5rem;
         margin-left: auto;
-        text-align: right;
-        gap: 2rem;
+        gap: 1rem;
     }
 
     .header-scroll {
@@ -439,6 +445,12 @@ main {
         width: 1rem;
         margin-right: 0.5rem;
 
+    }
+
+    #product-overview {
+        background-image: url(images/ShowcaseImage.png);
+        background-size: cover;
+        background-repeat: no-repeat;
     }
 
     #service-overview {

@@ -1,4 +1,4 @@
-var toggleButton = document.querySelector('.toggle-button');
+var toggleButton = document.querySelector('.hamburger-menu');
 var sidebar = document.querySelector('#sidebar');
 var backdrop = document.querySelector('.backdrop')
 var languagesModal = document.querySelector('.languages-modal');
@@ -20,7 +20,19 @@ languageSelector.addEventListener("click", function() {
     backdrop.style.display = "block";
 })
 
-closeModal.addEventListener("click", function() {
+closeModal.addEventListener("click", () => {
     languagesModal.classList.remove("open-modal");
     backdrop.style.display = "none";
 }, 10)
+
+const topBar = document.querySelector("#main-header");
+
+window.addEventListener("scroll", (e) => {
+    if(window.scrollY > 200){
+        topBar.classList.add("scroll")
+    }
+    else{
+        topBar.classList.remove("scroll")
+    }
+} )
+
