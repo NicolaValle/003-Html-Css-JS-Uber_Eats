@@ -28,7 +28,7 @@ closeModal.addEventListener("click", () => {
 const topBar = document.querySelector("#main-header");
 
 window.addEventListener("scroll", (e) => {
-    if(window.scrollY > 200){
+    if(window.scrollY > 1){
         topBar.classList.add("scroll")
     }
     else{

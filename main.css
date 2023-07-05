@@ -11,6 +11,10 @@ body {
     box-sizing: border-box;
 }
 
+hr{
+    border-color: rgba(255,255,255,0.5)
+}
+
 #main-header {
     display: flex;
     position: absolute;
@@ -18,6 +22,7 @@ body {
     width: 100vw;
     margin: 0;
     align-items: center;
+    transition: background-color 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
 }
 
 .header-content {
@@ -58,13 +63,15 @@ body {
 }
 
 #sidebar {
-    display: none;
+    display: flex;
     flex-direction: column;
     height: 100vh;
     width: 70vw;
-    position: absolute;
+    position: fixed;
     background-color: white;
     z-index: 2;
+    transform: translateX(-100%);
+    transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
 #sidebar a,
@@ -106,9 +113,10 @@ main {
 }
 
 #product-overview {
-    background: linear-gradient(rgba(255,255,255,0.2) 10%,  rgba(255,255,255,0.5) 70%, rgba(255,255,255,1)), url(images/ShowcaseImage.png);
+    background: linear-gradient(rgba(255,255,255,0.2) 10%,  rgba(255,255,255,0.5) 70%, rgba(255,255,255, 1)), url(images/ShowcaseImage.png);
     background-position: center;
     background-size: cover;
+    background-repeat: no-repeat;
     display: flex;
     flex-wrap: wrap;
     align-content: start;
@@ -118,19 +126,6 @@ main {
     height: 100vh;
     width: 100vw;
 }
-
-/* .image-bg {
-    position: absolute;
-    background: url(images/ShowcaseImage.png) right top/cover;
-    opacity: 0.2;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 70vh;
-    z-index: -1;
-    margin-top: 5.75rem;
-    box-shadow: 3px 3px 3px 3px rgba(0,0,0,0.3);
-} */
 
 #product-overview h1 {
     width: 100%;
@@ -206,10 +201,8 @@ main {
     margin-top: 1rem;
 }
 
-.open {
-    display: flex !important;
-    opacity: 1 !important;
-    /* transform: translateY(0) !important; */
+#sidebar.open {
+    transform: translateX(0%) !important;
 }
 
 .open-modal {
@@ -222,7 +215,7 @@ main {
     background-color: #000;
     z-index: 1;
     width: 100vw;
-    height: 100vh;
+    height: 100%;
     display: none;
     opacity: 0.5 !important;
 }
@@ -248,21 +241,26 @@ main {
     margin-bottom: 1rem;
 }
 
-#near-me h1{
+.near-me h1{
     text-align: center;
     margin: 1.5rem 0;
 }
 
-#near-me a {
+.near-me a {
     color: black;
-    font-size: 0.7rem;
+    font-size: 1rem;
+    margin-left: 0.5rem;
 }
 
-#near-me > img {
+.near-me a:not(.view-all-cities) {
+    text-decoration: none;
+}
+
+.near-me > img {
     width: 100vw;
 }
 
-#near-me ul {
+.near-me ul {
     display: flex;
     flex-wrap: wrap;
     list-style: none;
@@ -271,21 +269,21 @@ main {
     padding: 0;
 } 
 
-#near-me li {
+.near-me li {
     width: 40%;
     padding: 1rem;
 }
 
-#near-me ul:last-child{
+.near-me ul:last-child{
     padding-bottom: 1rem;
 }
 
-#countries-list h1 {
+.countries-list h1 {
     text-align: center;
     margin: 1.5rem 0;
 }
 
-#countries-list ul{
+.countries-list ul{
     display: flex;
     flex-wrap: wrap;
     list-style: none;
@@ -294,12 +292,17 @@ main {
     padding: 0;
 }
 
-#countries-list li {
+.countries-list li {
     width: 40%;
     padding: 1rem;
 }
 
-#countries-list ul:last-child{
+.countries-list a {
+    text-decoration: none;
+    color: #000;
+}
+
+.countries-list ul:last-child{
     padding-bottom: 1rem;
 }
 
@@ -316,6 +319,7 @@ main {
 
 .endpage-utils a > img {
     width: 7rem;
+    margin: 2rem 0;
 }
 
 .endpage-utils ul {
@@ -331,20 +335,37 @@ main {
     color: #000;
 }
 
+.language-selector svg {
+    width: 1rem;
+    height: auto;
+}
+
 .second-footer-section {
     display: flex;
     flex-wrap: wrap;
+    margin: 1rem;
 }
 
-.second-footer-section #footer-svg {
+.second-footer-section .social-links {
     display: flex;
-    justify-content: space-around;
+    width: 100%;
 }
 
-.second-footer-section a{
-    text-align: center;
+.social-links .social {
+    width: 10%;
     text-decoration: none;
     margin: 1rem auto;
+}
+
+.second-footer-section .utils-links{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.second-footer-section .utils-links > a {
+    width: 100%;
+    margin: 0.5rem 0;
 }
 
 .second-footer-section p {
@@ -398,6 +419,7 @@ main {
 
     #main-header.scroll{
         background: white;
+        box-shadow: rgb(226, 226, 226) 0px -2px 0px inset;
     }
     
     .uber-logo svg {
@@ -415,11 +437,6 @@ main {
         gap: 1rem;
     }
 
-    .header-scroll {
-        background-color: #fff;
-        box-shadow: 0px -2px 0px inset rgb(226, 226, 226);
-    }
-
     #main-header .profile-option {
         display: inline-block;
         border-radius: 9999px;
@@ -427,7 +444,6 @@ main {
         margin: 0;
         white-space: nowrap;
         font-size: 1rem;
-        box-shadow: 0px 2px 5px rgba(0,0,0,0.3);
     }
 
     #main-header .profile-option.sign-up {
@@ -449,11 +465,212 @@ main {
 
     #product-overview {
         background-image: url(images/ShowcaseImage.png);
-        background-size: cover;
-        background-repeat: no-repeat;
+        align-content: center;
+    }
+
+    #product-overview h1 {
+        width: 31.25rem;
+        font-size: 3rem;
+    }
+
+    .deliver-set {
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .deliver-set > div {
+        margin-right: 0.5rem;
+        box-shadow: none;
+    }
+
+    .deliver-set > a {
+        font-size: 1rem;
+        padding: 0.9rem;
+    }
+
+    .deliver-set p {
+        font-size: 0.8rem;
+        margin: 0;
+    }
+
+    .deliver-set p a {
+        color: black;
+    }
+
+    .delivery-address {
+        width: 31.25rem;
+        min-width: 31.25rem;
+        height: 3rem;
+        border: inset 0px -1 0 #eee;
+    }
+
+    .delivery-address svg {
+        width: 10%;
+    }
+
+    .delivery-time {
+        width: 13rem;
+        height: 3rem;
+    }
+
+    .delivery-time svg {
+        width: 25%;
+    }
+
+    .delivery-time select {
+        width: 65%;
     }
 
     #service-overview {
-        margin-top: 10rem;
+        margin-top: 3rem;
+        display: flex;
+    }
+
+    #service-overview div {
+        text-align: left;
+        padding: 0 1.3rem;
+    }
+
+    #service-overview div img {
+        width: 100%;
+        box-shadow: none;
+    }
+
+    #service-overview div h3 {
+        font-size: 1.5rem;
+    }
+
+    #service-overview div a {
+        font-size: 1rem;
+    }
+
+    .near-me {
+        align-self: center;
+        width: 90vw;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .section-title {
+        width: 100%;
+        display: flex;
+    }
+
+    .section-title h1 {
+        width: 50%;
+        font-size: 2rem;
+        text-align: left;
+    }
+
+    .section-title a {
+        text-decoration: underline !important;
+        text-align: end;
+        width: 50%;
+    }
+
+    .near-me {
+        margin: 2rem 0;
+    }
+
+    .near-me a {
+        align-self: center;
+        justify-self: flex-end;
+    }
+
+    .near-me img {
+        width: 100%;
+    }
+
+    .near-me ul {
+        justify-content: flex-start;
+    }
+
+    .near-me li {
+        width: 25%;
+    }
+
+    .countries-list {
+        width: 90vw;
+        margin: 2rem auto;
+    }
+
+    .countries-list h1 {
+        text-align: left;
+        font-size: 2rem;
+    }
+
+    .countries-list ul {
+        width: 100%;
+        justify-content: flex-start;
+    }
+
+    .countries-list li {
+        width: 25%;
+    }
+
+    .endpage-utils {
+        justify-content: space-between;
+        margin: 2rem;
+    }
+
+    .endpage-utils > div {
+        width: 50%;
+        height: 15rem;
+    }
+
+    .endpage-utils ul {
+        width: 50%;
+        display: flex;
+        justify-content: start;
+        flex-wrap: wrap;
+    }
+
+    .endpage-utils li {
+        width: 50%;
+    }
+
+    .endpage-utils .downloads {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+    }
+
+    .googlestore-logo {
+        margin-right: 12rem;
+    }
+
+    .second-footer-section {
+        width: 90vw;
+        display: flex;
+        margin: auto;
+    }
+
+    .second-footer-section .social-links {
+        width: 10vw;
+        margin-right: 2rem;
+    }
+
+    .social-links .social {
+        width: 1rem;
+    }
+    
+    .second-footer-section .utils-links {
+        width: 75vw;
+        flex-direction: row;
+    }
+
+    .utils-links > a {   
+        font-size: 0.8rem;   
+        text-decoration: none;
+        width: 20%;
+    }
+
+    .second-footer-section .footer-end-infos {
+        width: 80%;
+        font-size: 0.8rem;
+        margin-left: 10rem;
     }
 }
